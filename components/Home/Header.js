@@ -1,9 +1,9 @@
-import React from 'react';
-import {Image, View, StyleSheet, TouchableOpacity, Text} from 'react-native';
-import Octicons from 'react-native-vector-icons/Octicons';
-import Feather from 'react-native-vector-icons/Feather';
+import React from "react";
+import { Image, View, StyleSheet, TouchableOpacity, Text } from "react-native";
+import Octicons from "react-native-vector-icons/Octicons";
+import Feather from "react-native-vector-icons/Feather";
 
-function Header({navigation}) {
+function Header({ navigation }) {
   const size = 24;
   return (
     <View style={styles.container}>
@@ -13,7 +13,7 @@ function Header({navigation}) {
         {/*  */}
       </TouchableOpacity>
       <View style={styles.iconContaierr}>
-        <TouchableOpacity onPress={() => navigation.push('NewPostScreen')}>
+        <TouchableOpacity onPress={() => navigation.push("NewPostScreen")}>
           <Octicons name="diff-added" size={size} style={styles.icon} />
         </TouchableOpacity>
         <TouchableOpacity>
@@ -32,38 +32,38 @@ function Header({navigation}) {
 }
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    flexDirection: 'row',
+    justifyContent: "space-between",
+    alignItems: "center",
+    flexDirection: "row",
     marginHorizontal: 20,
     marginVertical: 10,
   },
   iconContaierr: {
-    flexDirection: 'row',
-    justifyContent: 'center',
+    flexDirection: "row",
+    justifyContent: "center",
   },
   icon: {
-    color: 'white',
+    color: "white",
     marginLeft: 10,
   },
   unreadBadge: {
-    backgroundColor: '#FF4435',
-    position: 'absolute',
+    backgroundColor: "#FF4435",
+    position: "absolute",
     left: 24,
     bottom: 12,
     width: 25,
     height: 20,
     borderRadius: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     zIndex: 100,
   },
   unreadBadgeText: {
-    color: 'white',
-    fontWeight: '600',
+    color: "white",
+    fontWeight: "600",
   },
   logo: {
-    color: 'white',
+    color: "white",
     fontSize: 24,
   },
 });

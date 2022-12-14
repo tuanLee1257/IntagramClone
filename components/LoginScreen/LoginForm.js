@@ -5,7 +5,7 @@ import { Alert, Pressable } from "react-native";
 import { TextInput } from "react-native";
 import { View, StyleSheet, Text } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { firebase, db } from "../../firebase";
+import firebase from "../../firebase";
 import "firebase/compat/auth";
 
 function LoginForm({ navigation }) {
@@ -15,12 +15,13 @@ function LoginForm({ navigation }) {
       .required()
       .min(8, "Youur password has to have at least 8 characters"),
   });
+
   const onLogin = async (email, password) => {
     try {
       await firebase.auth().signInWithEmailAndPassword(email, password);
       console.log("Firebase login successfull", email, password);
     } catch (error) {
-      Alert.alert(error.message);
+      console.log(error.message);
     }
   };
   return (

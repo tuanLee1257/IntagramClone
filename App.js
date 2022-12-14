@@ -1,10 +1,9 @@
 import React from "react";
-import HomeScreen from "./screens/HomeScreen";
-import Navigation from "./screens/Navigation";
-import NewPostSCreen from "./screens/NewPostSCreen";
+import { SafeAreaView } from "react-native-safe-area-context";
+import AuthNavigation from "./AuthNavigation";
 
 function App(props) {
-  return <Navigation />;
+  return <AuthNavigation />;
 }
 
 export default App;

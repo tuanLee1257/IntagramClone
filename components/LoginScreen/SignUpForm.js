@@ -9,7 +9,10 @@ import {
   Text,
   Pressable,
 } from "react-native";
-import { firebase, db } from "../../firebase";
+import firebase from "../../firebase";
+
+// const db = firebase.firestore();
+const db = firebase.firestore();
 
 function SignUpForm({ navigation }) {
   const SignUpFormSchema = Yup.object().shape({
@@ -22,19 +25,22 @@ function SignUpForm({ navigation }) {
   const getRandomProfilePic = async () => {
     const response = await fetch("https://randomuser.me/api");
     const data = await response.json();
-    return data.results[0].picture.large;
+    const picture = data.results[0].picture.large;
+    return picture;
   };
   const onSginUp = async (email, password, username) => {
     try {
-      await firebase.auth().createUserWithEmailAndPassword(email, password);
+      const authUser = await firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, password);
       console.log("Firebase sign up successfull", email, password);
 
-      // db.collection("users").add({
-      //   owner_uid: authUser.user.uid,
-      //   username: username,
-      //   email: authUser.user.email,
-      //   profile_picture: getRandomProfilePic(),
-      // });
+      db.collection("users").add({
+        owner_uid: authUser.user.uid || null,
+        username: username || null,
+        email: authUser.user.email || null,
+        profile_picture: (await getRandomProfilePic()) || null,
+      });
     } catch (error) {
       console.log(error.message);
     }
