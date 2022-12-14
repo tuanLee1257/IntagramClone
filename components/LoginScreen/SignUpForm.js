@@ -19,19 +19,31 @@ function SignUpForm({ navigation }) {
       .required()
       .min(8, "Youur password has to have at least 8 characters"),
   });
-  const onSginUp = async (email, password) => {
+  const getRandomProfilePic = async () => {
+    const response = await fetch("https://randomuser.me/api");
+    const data = await response.json();
+    return data.results[0].picture.large;
+  };
+  const onSginUp = async (email, password, username) => {
     try {
       await firebase.auth().createUserWithEmailAndPassword(email, password);
       console.log("Firebase sign up successfull", email, password);
+
+      // db.collection("users").add({
+      //   owner_uid: authUser.user.uid,
+      //   username: username,
+      //   email: authUser.user.email,
+      //   profile_picture: getRandomProfilePic(),
+      // });
     } catch (error) {
-      Alert.alert(error.message);
+      console.log(error.message);
     }
   };
   return (
     <Formik
       initialValues={{ email: "", username: "", password: "" }}
       onSubmit={(values) => {
-        onSginUp(values.email, values.password);
+        onSginUp(values.email, values.password, values.username);
       }}
       validationSchema={SignUpFormSchema}
       validateOnMount={true}
