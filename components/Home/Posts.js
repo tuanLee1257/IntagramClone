@@ -1,19 +1,19 @@
-import {Icon} from '@rneui/base';
-import React from 'react';
-import {View, Image, StyleSheet, Text, TouchableOpacity} from 'react-native';
-import {Divider} from 'react-native-elements';
-import Feather from 'react-native-vector-icons/Feather';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { Icon } from "@rneui/base";
+import React from "react";
+import { View, Image, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { Divider } from "react-native-elements";
+import Feather from "react-native-vector-icons/Feather";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 const iconSize = 24;
 
-function Posts({post}) {
+function Posts({ post }) {
   // const post = props.post;
   return (
-    <View style={{marginBottom: 30}}>
+    <View style={{ marginBottom: 30 }}>
       <Divider
         width={1}
         orientation="horizontal"
-        style={{alignSelf: 'stretch', backgroundColor: '#C1C1C1'}}
+        style={{ alignSelf: "stretch", backgroundColor: "#C1C1C1" }}
       />
       <PostHeader post={post} />
       <PostImage post={post} />
@@ -24,42 +24,44 @@ function Posts({post}) {
   );
 }
 
-function PostHeader({post}) {
+function PostHeader({ post }) {
   // const post = props.post;
   return (
     <View style={styles.post}>
-      <View style={{flexDirection: 'row', alignItems: 'center'}}>
-        <Image style={styles.story} source={{uri: post.profile_picture}} />
-        <Text style={{color: 'white', marginLeft: 5, fontWeight: '600'}}>
+      <View style={{ flexDirection: "row", alignItems: "center" }}>
+        <Image style={styles.story} source={{ uri: post.profile_picture }} />
+        <Text style={{ color: "white", marginLeft: 5, fontWeight: "600" }}>
           {post.user}
         </Text>
       </View>
-      <Text style={{color: 'white', fontWeight: '900'}}>...</Text>
+      <Text style={{ color: "white", fontWeight: "900" }}>...</Text>
     </View>
   );
 }
-function PostImage({post}) {
+function PostImage({ post }) {
   return (
-    <View style={{width: '100%', height: 450}}>
+    <View style={{ width: "100%", height: 450 }}>
       <Image
-        source={{uri: post.imageURL}}
-        style={{flex: 1, width: '100%', height: '100%', resizeMode: 'cover'}}
+        source={{ uri: post.imageUrl }}
+        style={{ flex: 1, width: "100%", height: "100%", resizeMode: "cover" }}
       />
     </View>
   );
 }
-function PostFooter({post}) {
+function PostFooter({ post }) {
   return (
     <View
       style={{
         marginHorizontal: 10,
-      }}>
+      }}
+    >
       <View
         style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-        }}>
-        <View style={{flexDirection: 'row'}}>
+          flexDirection: "row",
+          justifyContent: "space-between",
+        }}
+      >
+        <View style={{ flexDirection: "row" }}>
           <TouchableOpacity>
             <FontAwesome
               name="heart-o"
@@ -94,52 +96,53 @@ function PostFooter({post}) {
   );
 }
 
-function Likes({post}) {
+function Likes({ post }) {
   return (
     <View>
       <Text
         style={{
-          fontWeight: '400',
+          fontWeight: "400",
           fontSize: 16,
           marginLeft: 10,
-          color: 'white',
+          color: "white",
           marginTop: 3,
-        }}>
+        }}
+      >
         {post.likes} likes
       </Text>
     </View>
   );
 }
 
-function Caption({post}) {
+function Caption({ post }) {
   return (
     <View>
       <Text style={styles.text}>
-        <Text style={{fontWeight: '700'}}>{post.user}</Text>
+        <Text style={{ fontWeight: "700" }}>{post.user}</Text>
         <Text> {post.caption}</Text>
       </Text>
     </View>
   );
 }
-function CommentsSection({post}) {
+function CommentsSection({ post }) {
   return (
     <View>
-      {!!post.comments.length && (
-        <Text style={{color: 'gray', marginLeft: 20, marginTop: 5}}>
-          View {post.comments.length > 1 ? 'all' : ''} {post.comments.length}
-          {post.comments.length > 1 ? ' comments' : ' comment'}
+      {!!post?.comments.length && (
+        <Text style={{ color: "gray", marginLeft: 20, marginTop: 5 }}>
+          View {post?.comments.length > 1 ? "all" : ""} {post.comments.length}
+          {post?.comments.length > 1 ? " comments" : " comment"}
         </Text>
       )}
     </View>
   );
 }
 
-function Comments({post}) {
+function Comments({ post }) {
   return (
     <View>
-      {post.comments.map(comment => (
-        <Text style={{color: 'white', marginLeft: 20, marginTop: 3}}>
-          <Text style={{fontWeight: '700'}}>{comment.user} </Text>
+      {post.comments.map((comment) => (
+        <Text style={{ color: "white", marginLeft: 20, marginTop: 3 }}>
+          <Text style={{ fontWeight: "700" }}>{comment.user} </Text>
           <Text>{comment.comment}</Text>
         </Text>
       ))}
@@ -148,10 +151,10 @@ function Comments({post}) {
 }
 const styles = StyleSheet.create({
   post: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     margin: 5,
-    alignItems: 'center',
+    alignItems: "center",
   },
   story: {
     width: 35,
@@ -159,18 +162,18 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     marginLeft: 6,
     borderWidth: 1.6,
-    borderColor: '#ff8501',
+    borderColor: "#ff8501",
   },
   footerIcon: {
-    color: 'white',
+    color: "white",
     marginHorizontal: 10,
     marginTop: 10,
   },
   text: {
-    fontWeight: '400',
+    fontWeight: "400",
     fontSize: 16,
     marginLeft: 10,
-    color: 'white',
+    color: "white",
     marginTop: 3,
   },
 });

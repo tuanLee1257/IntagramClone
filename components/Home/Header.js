@@ -2,12 +2,20 @@ import React from "react";
 import { Image, View, StyleSheet, TouchableOpacity, Text } from "react-native";
 import Octicons from "react-native-vector-icons/Octicons";
 import Feather from "react-native-vector-icons/Feather";
-
+import firebase from "../../firebase";
+const handleSignOut = async () => {
+  try {
+    await firebase.auth().signOut();
+    console.log("Signed out");
+  } catch (err) {
+    console.log(err);
+  }
+};
 function Header({ navigation }) {
   const size = 24;
   return (
     <View style={styles.container}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={handleSignOut}>
         {/*  */}
         <Text style={styles.logo}>Instagram</Text>
         {/*  */}

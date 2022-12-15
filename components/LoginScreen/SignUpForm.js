@@ -35,12 +35,14 @@ function SignUpForm({ navigation }) {
         .createUserWithEmailAndPassword(email, password);
       console.log("Firebase sign up successfull", email, password);
 
-      db.collection("users").add({
-        owner_uid: authUser.user.uid || null,
-        username: username || null,
-        email: authUser.user.email || null,
-        profile_picture: (await getRandomProfilePic()) || null,
-      });
+      db.collection("users")
+        .doc(email)
+        .set({
+          owner_uid: authUser.user.uid || null,
+          username: username || null,
+          email: authUser.user.email || null,
+          profile_picture: (await getRandomProfilePic()) || null,
+        });
     } catch (error) {
       console.log(error.message);
     }
